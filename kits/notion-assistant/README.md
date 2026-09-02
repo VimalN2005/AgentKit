@@ -61,11 +61,12 @@ User Query / Notes
 
 ```json
 {
-  "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { result } }",
+  "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String, $contextData: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase, contextData: $contextData) { result } }",
   "variables": {
     "query": "Create an architectural decision record for adopting Redis cache in our microservices",
     "actionType": "create_page",
-    "targetDatabase": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
+    "targetDatabase": "4b8c9d12-34ef-56ab-78cd-90ef12345678",
+    "contextData": "Target microservice: user-profile-service"
   }
 }
 ```

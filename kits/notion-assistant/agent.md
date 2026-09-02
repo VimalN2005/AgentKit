@@ -41,11 +41,12 @@ No external environment variables are required for basic flow execution. When de
 
    ```json
    {
-     "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { result } }",
+     "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String, $contextData: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase, contextData: $contextData) { result } }",
      "variables": {
        "query": "Create a project sprint checklist with 3 tasks for AI agent rollout",
        "actionType": "create_page",
-       "targetDatabase": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
+       "targetDatabase": "4b8c9d12-34ef-56ab-78cd-90ef12345678",
+       "contextData": "Sprint: Q3 AI Launch"
      }
    }
    ```
