@@ -1,5 +1,3 @@
-# Prompt files are sent to the model verbatim as instruction content, so they
-# carry no document furniture (H1, front matter) and must stay free of
-# lint-only formatting changes.
-ignore:
-  - "prompts/*.md"
+# Markdownlint rules configuration
+default: true
+MD013: false

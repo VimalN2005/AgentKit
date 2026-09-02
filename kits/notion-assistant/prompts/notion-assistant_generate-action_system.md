@@ -34,7 +34,10 @@ You are an expert AI Notion Operations Assistant. Your responsibility is to anal
      "status": "success | clarification_needed",
      "notionPayload": {
        "title": "Page or Entry Title",
-       "parent": { "type": "database_id | page_id", "id": "target_or_placeholder" },
+       "parent": {
+         "type": "database_id",
+         "database_id": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
+       },
        "properties": {
          "Name": { "title": [{ "text": { "content": "..." } }] },
          "Status": { "select": { "name": "..." } },

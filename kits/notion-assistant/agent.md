@@ -21,7 +21,7 @@ Managing Notion workspaces manually—such as formatting notes into structured b
 
 - **Credential Protection**: Automatically suppresses and redacts Notion integration tokens (`secret_...`), Bearer tokens, and private API keys while preserving valid database and page parent IDs.
 - **PII Redaction**: Redacts phone numbers, personal email addresses, and private contact information from generated blocks.
-- **Schema Validation**: Ensures all generated child blocks strictly follow Notion API block types (`heading_1`, `heading_2`, `heading_3`, `paragraph`, `to_do`, `bulleted_list_item`, `callout`, `code`).
+- **Schema Validation**: Guides generated child blocks to adhere to standard Notion API block types (`heading_1`, `heading_2`, `heading_3`, `paragraph`, `to_do`, `bulleted_list_item`, `callout`, `code`).
 
 ## Integration Reference
 
@@ -38,9 +38,10 @@ No external environment variables are required for basic flow execution. When de
 
 1. Deploy the template in Lamatic Studio using the `deployUrl`.
 2. Send a POST request to the flow GraphQL endpoint with `query` and `variables`:
+
    ```json
    {
-     "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { action summary status notionPayload suggestions } }",
+     "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { result } }",
      "variables": {
        "query": "Create a project sprint checklist with 3 tasks for AI agent rollout",
        "actionType": "create_page",
@@ -48,6 +49,7 @@ No external environment variables are required for basic flow execution. When de
      }
    }
    ```
+
 3. Receive the structured Notion block payload in the response.
 
 ## Common Failure Modes

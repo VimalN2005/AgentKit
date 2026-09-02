@@ -58,9 +58,10 @@ User Query / Notes
 ## 💡 Example
 
 ### Request Payload:
+
 ```json
 {
-  "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { action summary status notionPayload suggestions } }",
+  "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { result } }",
   "variables": {
     "query": "Create an architectural decision record for adopting Redis cache in our microservices",
     "actionType": "create_page",
@@ -70,6 +71,7 @@ User Query / Notes
 ```
 
 ### Sample Response:
+
 ```json
 {
   "result": {
