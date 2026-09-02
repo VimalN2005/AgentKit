@@ -10,9 +10,9 @@ An AI-powered Notion Assistant template built on [Lamatic.ai](https://lamatic.ai
 ## 🌟 Key Features
 
 - **Natural Language Workspace Ops**: Ask questions, request page creation, or format unstructured notes into organized Notion structures.
-- **Valid Block Tree Generation**: Generates compliant Notion block payloads (`heading_1`, `heading_2`, `paragraph`, `to_do`, `bulleted_list_item`, `callout`, `code`).
+- **Valid Block Tree Generation**: Generates compliant Notion block payloads (`heading_1`, `heading_2`, `heading_3`, `paragraph`, `to_do`, `bulleted_list_item`, `callout`, `code`).
 - **Database Property Mapping**: Automatically maps titles, status tags, priorities, and dates to Notion Database property types.
-- **Built-in Security & PII Redaction**: Automatically suppresses private Notion tokens (`secret_...`), API keys, and sensitive contact details to prevent accidental data leaks.
+- **Built-in Security & PII Redaction**: Automatically suppresses private Notion tokens (`secret_...`), API keys, and sensitive contact details while preserving valid target parent IDs.
 
 ---
 
@@ -42,7 +42,7 @@ User Query / Notes
 |---|---|---|---|
 | `query` | `string` | **Yes** | Natural language instruction, question, or raw notes. |
 | `actionType` | `string` | No | Target operation (`"search"`, `"create_page"`, `"update_database"`, `"summarize"`, `"auto"`). |
-| `targetDatabase` | `string` | No | Name or ID of target Notion database/parent page. |
+| `targetDatabase` | `string` | No | Name or UUID of target Notion database/parent page. |
 | `contextData` | `string` | No | Additional context, existing notes, or pre-fetched JSON data. |
 
 ---
@@ -60,9 +60,12 @@ User Query / Notes
 ### Request Payload:
 ```json
 {
-  "query": "Create an architectural decision record for adopting Redis cache in our microservices",
-  "actionType": "create_page",
-  "targetDatabase": "Engineering Docs"
+  "query": "query ExecuteNotionAssistant($query: String!, $actionType: String, $targetDatabase: String) { notionAssistant(query: $query, actionType: $actionType, targetDatabase: $targetDatabase) { action summary status notionPayload suggestions } }",
+  "variables": {
+    "query": "Create an architectural decision record for adopting Redis cache in our microservices",
+    "actionType": "create_page",
+    "targetDatabase": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
+  }
 }
 ```
 
@@ -75,7 +78,10 @@ User Query / Notes
     "status": "success",
     "notionPayload": {
       "title": "ADR 004: Redis Caching Layer Adoption",
-      "parent": { "type": "page_id", "id": "Engineering Docs" },
+      "parent": {
+        "type": "database_id",
+        "database_id": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
+      },
       "properties": {
         "Name": { "title": [{ "text": { "content": "ADR 004: Redis Caching Layer Adoption" } }] },
         "Status": { "select": { "name": "Proposed" } },
