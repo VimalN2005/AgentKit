@@ -1,7 +1,7 @@
 # 📝 Notion Assistant — AgentKit Template
 
-[![Template](https://img.shields.io/badge/AgentKit-Template-blueviolet)](#)
-[![Status](https://img.shields.io/badge/Status-Validated-success)](#)
+![Template](https://img.shields.io/badge/AgentKit-Template-blueviolet)
+![Status](https://img.shields.io/badge/Status-Validated-success)
 
 An AI-powered Notion Assistant template built on [Lamatic.ai](https://lamatic.ai) that turns natural language queries, meeting notes, and project instructions into structured Notion API blocks, page trees, and database properties.
 
@@ -18,7 +18,7 @@ An AI-powered Notion Assistant template built on [Lamatic.ai](https://lamatic.ai
 
 ## 🏗️ Architecture
 
-```
+```text
 User Query / Notes 
        │
        ▼
@@ -51,7 +51,7 @@ User Query / Notes
 
 | Field | Type | Description |
 |---|---|---|
-| `result` | `string` | JSON string containing `action`, `summary`, `status`, `notionPayload` (Notion block tree and properties), and `suggestions`. |
+| `result` | `string` | Stringified JSON payload containing `action`, `summary`, `status`, `notionPayload` (Notion block tree and properties), and `suggestions`. |
 
 ---
 
@@ -75,55 +75,7 @@ User Query / Notes
 
 ```json
 {
-  "result": {
-    "action": "create_page",
-    "summary": "Generated an Architectural Decision Record (ADR) page for adopting Redis caching with context, decision, consequences, and action items.",
-    "status": "success",
-    "notionPayload": {
-      "title": "ADR 004: Redis Caching Layer Adoption",
-      "parent": {
-        "type": "database_id",
-        "database_id": "4b8c9d12-34ef-56ab-78cd-90ef12345678"
-      },
-      "properties": {
-        "Name": { "title": [{ "text": { "content": "ADR 004: Redis Caching Layer Adoption" } }] },
-        "Status": { "select": { "name": "Proposed" } },
-        "Tags": { "multi_select": [{ "name": "Architecture" }, { "name": "Backend" }] }
-      },
-      "children": [
-        {
-          "object": "block",
-          "type": "heading_2",
-          "heading_2": { "rich_text": [{ "type": "text", "text": { "content": "1. Context and Problem Statement" } }] }
-        },
-        {
-          "object": "block",
-          "type": "paragraph",
-          "paragraph": { "rich_text": [{ "type": "text", "text": { "content": "High database read load on user profile service requires a fast distributed in-memory cache." } }] }
-        },
-        {
-          "object": "block",
-          "type": "callout",
-          "callout": {
-            "icon": { "type": "emoji", "emoji": "💡" },
-            "rich_text": [{ "type": "text", "text": { "content": "Decision: Deploy Redis cluster with LRU eviction policy." } }]
-          }
-        },
-        {
-          "object": "block",
-          "type": "to_do",
-          "to_do": {
-            "rich_text": [{ "type": "text", "text": { "content": "Benchmark Redis throughput with synthetic load test" } }],
-            "checked": false
-          }
-        }
-      ]
-    },
-    "suggestions": [
-      "Add telemetry and Prometheus metrics monitoring task",
-      "Configure fallback strategy in case of cache connection timeout"
-    ]
-  }
+  "result": "{\"action\":\"create_page\",\"summary\":\"Generated an Architectural Decision Record (ADR) page for adopting Redis caching with context, decision, consequences, and action items.\",\"status\":\"success\",\"notionPayload\":{\"title\":\"ADR 004: Redis Caching Layer Adoption\",\"parent\":{\"type\":\"database_id\",\"database_id\":\"4b8c9d12-34ef-56ab-78cd-90ef12345678\"},\"properties\":{\"Name\":{\"title\":[{\"text\":{\"content\":\"ADR 004: Redis Caching Layer Adoption\"}}]},\"Status\":{\"select\":{\"name\":\"Proposed\"}},\"Tags\":{\"multi_select\":[{\"name\":\"Architecture\"},{\"name\":\"Backend\"}]}},\"children\":[{\"object\":\"block\",\"type\":\"heading_2\",\"heading_2\":{\"rich_text\":[{\"type\":\"text\",\"text\":{\"content\":\"1. Context and Problem Statement\"}}]}},{\"object\":\"block\",\"type\":\"paragraph\",\"paragraph\":{\"rich_text\":[{\"type\":\"text\",\"text\":{\"content\":\"High database read load on user profile service requires a fast distributed in-memory cache.\"}}]}},{\"object\":\"block\",\"type\":\"callout\",\"callout\":{\"icon\":{\"type\":\"emoji\",\"emoji\":\"💡\"},\"rich_text\":[{\"type\":\"text\",\"text\":{\"content\":\"Decision: Deploy Redis cluster with LRU eviction policy.\"}}]}},{\"object\":\"block\",\"type\":\"to_do\",\"to_do\":{\"rich_text\":[{\"type\":\"text\",\"text\":{\"content\":\"Benchmark Redis throughput with synthetic load test\"}}],\"checked\":false}}]},\"suggestions\":[\"Add telemetry and Prometheus metrics monitoring task\",\"Configure fallback strategy in case of cache connection timeout\"]}"
 }
 ```
 
@@ -132,5 +84,5 @@ User Query / Notes
 ## 🚀 Deployment & Usage
 
 1. Open this template in [Lamatic Studio](https://studio.lamatic.ai).
-2. Click **Deploy** to generate your live GraphQL/REST endpoint.
+2. Click **Deploy** to generate your live GraphQL endpoint.
 3. Call the endpoint from your application, CLI, or workflow automation tools.

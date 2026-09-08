@@ -14,7 +14,7 @@ Managing Notion workspaces manually—such as formatting notes into structured b
 
 - **Trigger**: Real-time API / GraphQL request accepting `query`, optional `actionType`, `targetDatabase`, and `contextData`.
 - **Processing**: The input is passed to an LLM node (powered by Gemini 1.5 Pro) executing the `@prompts/notion-assistant_generate-action_system.md` prompt.
-- **Output**: Returns a structured JSON result containing `action`, `summary`, `status`, `notionPayload` (Notion block tree and properties), and follow-up `suggestions`.
+- **Output**: Returns a stringified JSON result containing `action`, `summary`, `status`, `notionPayload` (Notion block tree and properties), and follow-up `suggestions`.
 - **Dependencies**: Lamatic Studio GraphQL Node, LLM Node, Model Configs, and System Prompts.
 
 ## Guardrails
@@ -51,7 +51,7 @@ No external environment variables are required for basic flow execution. When de
    }
    ```
 
-3. Receive the structured Notion block payload in the response.
+3. Receive the stringified Notion block payload in the response.
 
 ## Common Failure Modes
 
